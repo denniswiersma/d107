@@ -1,0 +1,32 @@
+plugins {
+    id 'war'
+    id 'java'
+    id 'idea'
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+group 'nl.d107'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Servlets
+    implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    // Thymeleaf
+    implementation 'org.thymeleaf:thymeleaf:3.0.15.RELEASE'
+    // JUnit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}

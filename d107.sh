@@ -2,7 +2,7 @@
 
 git pull
 
-gradle war
+/opt/gradle/bin/gradle war
 
 sudo docker stop d107
 

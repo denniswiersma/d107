@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "WikiServlet", urlPatterns = "/wiki", loadOnStartup = 1)
+@WebServlet(name = "WikiServlet", urlPatterns = "/wiki/", loadOnStartup = 1)
 public class WikiServlet extends HttpServlet {
     // Stores an instance of the TemplateEngine
     private TemplateEngine templateEngine;

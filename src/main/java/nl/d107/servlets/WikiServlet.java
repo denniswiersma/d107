@@ -1,6 +1,8 @@
 package nl.d107.servlets;
 
 import nl.d107.config.WebConfig;
+import nl.d107.models.EntryController;
+import nl.d107.models.WikiEntry;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
@@ -8,6 +10,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "WikiServlet", urlPatterns = "/wiki/", loadOnStartup = 1)
 public class WikiServlet extends HttpServlet {
@@ -37,6 +40,13 @@ public class WikiServlet extends HttpServlet {
                 request.getLocale());
 
         // Process the template and data into a page
+        ArrayList<WikiEntry> entries = EntryController.readCsv();
+        ArrayList<String> entryNames = new ArrayList<>();
+        for (WikiEntry entry: entries) {
+            entryNames.add(entry.name());
+        }
+        ctx.setVariable("entryNames", entryNames);
+        ctx.setVariable("entries", entries);
         templateEngine.process("wiki", ctx, response.getWriter());
     }
 

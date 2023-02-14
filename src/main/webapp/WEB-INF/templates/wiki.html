@@ -33,9 +33,7 @@
             </button>
             <div class="collapse show" id="Characters-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="link-dark rounded">Overview</a></li>
-                    <li><a href="#" class="link-dark rounded">Updates</a></li>
-                    <li><a href="#" class="link-dark rounded">Reports</a></li>
+                    <li th:each="entry:${entries}" th:text="${entry.name}"></li>
                 </ul>
             </div>
         </li>

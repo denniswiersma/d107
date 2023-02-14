@@ -6,18 +6,14 @@ import java.util.List;
 import com.opencsv.*;
 
 public class EntryController {
-    public static void main(String[] args) {
-        ArrayList<WikiEntry> entries = readCsv();
-        System.out.println(entries);
-    }
 
-    public static ArrayList<WikiEntry>  readCsv() {
+    public static ArrayList<WikiEntry>  readCsv(String fName) {
         ArrayList<WikiEntry> entries = new ArrayList<>();
         try {
 
             // Create an object of filereader
             // class with CSV file as a parameter.
-            FileReader filereader = new FileReader("entries.csv");
+            FileReader filereader = new FileReader(fName);
 
             // create csvReader object passing
             // file reader as a parameter

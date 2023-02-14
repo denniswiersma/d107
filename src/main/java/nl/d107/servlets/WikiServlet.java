@@ -40,12 +40,7 @@ public class WikiServlet extends HttpServlet {
                 request.getLocale());
 
         // Process the template and data into a page
-        ArrayList<WikiEntry> entries = EntryController.readCsv();
-        ArrayList<String> entryNames = new ArrayList<>();
-        for (WikiEntry entry: entries) {
-            entryNames.add(entry.name());
-        }
-        ctx.setVariable("entryNames", entryNames);
+        ArrayList<WikiEntry> entries = EntryController.readCsv(getServletContext().getRealPath("entries.csv"));
         ctx.setVariable("entries", entries);
         templateEngine.process("wiki", ctx, response.getWriter());
     }

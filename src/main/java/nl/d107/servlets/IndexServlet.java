@@ -8,7 +8,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-
 @WebServlet(name = "IndexServlet", urlPatterns = "/", loadOnStartup = 1)
 public class IndexServlet extends HttpServlet {
     // Stores an instance of the TemplateEngine

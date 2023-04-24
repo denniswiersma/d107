@@ -5,3 +5,37 @@ Let's make a game!
     created:24/04/2023
     updated:24/04/2023
     version:0.1
+
+Settings
+    building cost increase:110%
+    building cost refund:30%
+
+Layout
+	use default
+
+Buttons
+	*ECButton
+		name:Verdien EC's
+		desc:Klik hier om EC's te verdienen!
+		on click:anim icon wobble
+		on click:yield 0.01 EC
+		icon:images/star.png
+		tooltip origin:bottom
+
+Resources
+	*EC|EC's
+		name:EC|EC's
+		desc:Dit zijn je EC's. Verdien er genoeg om je opleiding af te ronden!
+		class:noBackground
+		show earned
+
+Buildings
+	*TEMPLATE
+		on click:anim glow
+
+	*Nuc|Nucs
+    		name:Nuc computer|Nuc computers
+    		desc:A tiny little computer.<//><b>Effect:</b><.>Produces 0.01 EC's every 10 seconds.
+    		cost:1 EC
+    		on tick:yield 0.001 EC
+    		unlocked

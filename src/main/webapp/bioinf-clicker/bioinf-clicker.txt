@@ -19,7 +19,7 @@ Buttons
 		desc:Klik hier om ECs te verdienen!
 		on click:anim icon wobble
 		on click:yield 0.01 EC
-		icon:images/star.png
+		icon:bioinf-clicker/images/star.png
 		tooltip origin:bottom
 
 Resources

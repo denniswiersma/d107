@@ -15,17 +15,17 @@ Layout
 
 Buttons
 	*ECButton
-		name:Verdien EC's
-		desc:Klik hier om EC's te verdienen!
+		name:Verdien ECs
+		desc:Klik hier om ECs te verdienen!
 		on click:anim icon wobble
 		on click:yield 0.01 EC
 		icon:images/star.png
 		tooltip origin:bottom
 
 Resources
-	*EC|EC's
-		name:EC|EC's
-		desc:Dit zijn je EC's. Verdien er genoeg om je opleiding af te ronden!
+	*EC|ECs
+		name:EC|ECs
+		desc:Dit zijn je ECs. Verdien er genoeg om je opleiding af te ronden!
 		class:noBackground
 		show earned
 
@@ -35,7 +35,7 @@ Buildings
 
 	*Nuc|Nucs
     		name:Nuc computer|Nuc computers
-    		desc:A tiny little computer.<//><b>Effect:</b><.>Produces 0.01 EC's every 10 seconds.
+    		desc:A tiny little computer.<//><b>Effect:</b><.>Produces 0.01 ECs every 10 seconds.
     		cost:1 EC
     		on tick:yield 0.001 EC
     		unlocked

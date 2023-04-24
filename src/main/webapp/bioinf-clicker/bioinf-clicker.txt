@@ -1,0 +1,7 @@
+Let's make a game!
+    name:Bioinf Clicker
+    by:d107 gang
+    desc:Idle game met al je favoriete onderdelen van de bioinf opleiding aan de Hanze!
+    created:24/04/2023
+    updated:24/04/2023
+    version:0.1

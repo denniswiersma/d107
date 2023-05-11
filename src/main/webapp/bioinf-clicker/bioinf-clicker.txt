@@ -18,7 +18,7 @@ Buttons
 		name:Verdien ECs
 		desc:Klik hier om ECs te verdienen!
 		on click:anim icon wobble
-		on click:yield 0.01 EC
+		on click:yield 0.1 EC
 		icon:bioinf-clicker/images/star.png
 		tooltip origin:bottom
 
@@ -35,7 +35,28 @@ Buildings
 
 	*Nuc|Nucs
     		name:Nuc computer|Nuc computers
-    		desc:A tiny little computer.<//><b>Effect:</b><.>Produces 0.01 ECs every 10 seconds.
+    		desc:Een mini PC voor al je open office needs!<//><b>Effect:</b><.>Produces 1 ECs every 10 seconds.
     		cost:1 EC
-    		on tick:yield 0.001 EC
+    		on tick:yield 0.1 EC
     		unlocked
+
+    *BinPC|BinPCs
+            name:Bin PC|Bin PCs
+            desc:Een krachtige computer op het Bin netwerk.<//><b>Effect:</b><.>Produces 1 ECs every second.
+            cost:20 EC
+            on tick:yield 1 EC
+            req:50 EC:earned
+
+    *Mordor
+            name:Mordor
+            desc:Dè centrale Bin server.<//><b>Effect:</b><.>Produces 5 ECs every second.
+            cost:100 EC
+            on tick:yield 5 EC
+            req:1000 EC:earned
+
+    *Assemblix
+            name:Assemblix
+            desc:De krachtige Bin server voor al je bioinformatics needs.<//><b>Effect:</b><.>Produces 15 ECs every second.
+            cost:500 EC
+            on tick:yield 15 EC
+            req:3000 EC:earned

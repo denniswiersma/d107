@@ -9,8 +9,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ClickerServlet", urlPatterns = "/bioinf-clicker", loadOnStartup = 1)
-public class ClickerServlet extends HttpServlet {
+@WebServlet(name = "CalendarServlet", urlPatterns = "/calendar", loadOnStartup = 1)
+public class CalendarServlet extends HttpServlet {
     private TemplateEngine templateEngine;
 
     /**
@@ -20,7 +20,7 @@ public class ClickerServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-        System.out.println("[Servlet] Initialising ClickerServlet");
+        System.out.println("[Servlet] Initialising CalendarServlet");
         this.templateEngine = WebConfig.getTemplateEngine();
     }
 
@@ -31,6 +31,6 @@ public class ClickerServlet extends HttpServlet {
         WebContext ctx = new WebContext(request, response, request.getServletContext(), request.getLocale());
 
         // Process the template and data into a page
-        templateEngine.process("bioinf-clicker", ctx, response.getWriter());
+        templateEngine.process("calendar", ctx, response.getWriter());
     }
 }

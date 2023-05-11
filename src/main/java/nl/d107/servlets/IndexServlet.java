@@ -8,39 +8,29 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+
 @WebServlet(name = "IndexServlet", urlPatterns = "/", loadOnStartup = 1)
 public class IndexServlet extends HttpServlet {
-    // Stores an instance of the TemplateEngine
     private TemplateEngine templateEngine;
 
     /**
-     * Initialises the class: gets the TemplateEngine
-     * @throws ServletException if the servlet cannot be created
+     * Initialization method. Creates the class instances.
+     *
+     * @throws ServletException when the initialization fails
      */
     @Override
     public void init() throws ServletException {
         System.out.println("[Servlet] Initialising IndexServlet");
-        // Gets the template engine
         this.templateEngine = WebConfig.getTemplateEngine();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Configure the response
+        // Configure the response and create WebContext object
         WebConfig.configureResponse(response);
-
-        // Create WebContext object
-        WebContext ctx = new WebContext(
-                request,
-                response,
-                request.getServletContext(),
-                request.getLocale());
+        WebContext ctx = new WebContext(request, response, request.getServletContext(), request.getLocale());
 
         // Process the template and data into a page
         templateEngine.process("index", ctx, response.getWriter());
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
     }
 }

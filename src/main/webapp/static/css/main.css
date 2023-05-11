@@ -1,0 +1,35 @@
+* {
+    /* Variables */
+    --hanze-orange: #ee7f00;
+    --lighter-orange: #ffb54e;
+    --darker-orange: #ad5d00;
+}
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    height: 50px;
+    top: 0;
+    position: sticky;
+    background-color: var(--hanze-orange);
+    z-index: 999;
+}
+.navbar a {
+    display: flex;
+    float: left;
+    color: white;
+    height: 100%;
+    padding: 0 16px;
+    align-items: center;
+    font-size: 1.1em;
+    text-decoration: none;
+}
+.navbar a:hover, .navbar-dropdown:hover .navbar-dropdown-button {
+    background-color: var(--lighter-orange);
+}
+.navbar a.active {
+    background-color: var(--darker-orange);
+}

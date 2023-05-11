@@ -18,15 +18,18 @@ repositories {
 }
 
 dependencies {
-    // Servlets
-    implementation 'javax.servlet:javax.servlet-api:4.0.1'
-    // Thymeleaf
-    implementation 'org.thymeleaf:thymeleaf:3.0.15.RELEASE'
-    // JUnit
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    // Other
-    implementation 'com.opencsv:opencsv:5.7.1'
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    implementation group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
+    implementation group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.15.RELEASE'
+
+    // https://mvnrepository.com/artifact/com.opencsv/opencsv
+    implementation group: 'com.opencsv', name: 'opencsv', version: '5.7.1'
+
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    implementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.8.2'
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+    implementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.8.2'
 }
 
 test {

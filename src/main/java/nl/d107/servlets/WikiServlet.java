@@ -10,43 +10,35 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "WikiServlet", urlPatterns = "/wiki/", loadOnStartup = 1)
+@WebServlet(name = "WikiServlet", urlPatterns = "/wiki", loadOnStartup = 1)
 public class WikiServlet extends HttpServlet {
-    // Stores an instance of the TemplateEngine
     private TemplateEngine templateEngine;
 
     /**
-     * Initialises the class: gets the TemplateEngine
-     * @throws ServletException if the servlet cannot be created
+     * Initialization method. Creates the class instances.
+     *
+     * @throws ServletException when the initialization fails
      */
     @Override
     public void init() throws ServletException {
-        System.out.println("[Servlet] Initialising IndexServlet");
-        // Gets the template engine
+        System.out.println("[Servlet] Initialising WikiServlet");
         this.templateEngine = WebConfig.getTemplateEngine();
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Configure the response
+        // Configure the response and create WebContext object
         WebConfig.configureResponse(response);
+        WebContext ctx = new WebContext(request, response, request.getServletContext(), request.getLocale());
 
-        // Create WebContext object
-        WebContext ctx = new WebContext(
-                request,
-                response,
-                request.getServletContext(),
-                request.getLocale());
+        // Collect entries and set to context variable
+        String wikiEntriesFile = getServletContext().getInitParameter("wiki-entries-file");
+        List<WikiEntry> entries = EntryController.readCsv(getServletContext().getRealPath(wikiEntriesFile));
+        ctx.setVariable("entries", entries);
 
         // Process the template and data into a page
-        ArrayList<WikiEntry> entries = EntryController.readCsv(getServletContext().getRealPath("entries.csv"));
-        ctx.setVariable("entries", entries);
         templateEngine.process("wiki", ctx, response.getWriter());
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
     }
 }

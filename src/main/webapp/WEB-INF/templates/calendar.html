@@ -2,10 +2,18 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>D1.07 | Bioinf-Clicker</title>
+  <title>D1.07 | Calendar</title>
 
   <!--  Stylesheets  -->
   <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/calendar.css">
+
+  <!--  Scripts  -->
+  <script src="/static/js/libs/jquery-3.6.3.min.js"></script>
+  <script src="/static/js/libs/luxon-2.5.2.min.js"></script>
+  <script src="/static/js/libs/fullcalendar/fullcalendar-6.1.7.min.js"></script>
+  <script src="/static/js/libs/fullcalendar/luxon2-connector/index.global.min.js"></script>
+  <script src="/static/js/calendar.js"></script>
 
   <!--  Website icons  -->
   <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
@@ -14,9 +22,8 @@
   <link rel="manifest" href="/static/favicon/site.webmanifest">
 </head>
 <body>
-<header th:replace="~{fragments :: navbar('bioinf-clicker')}"></header>
+<header th:replace="~{fragments :: navbar('calendar')}"></header>
 
-<iframe src="https://orteil.dashnet.org/igm/?g=https://www.d107.nl/bioinf-clicker/bioinf-clicker.txt"
-        style="border:none; position:fixed; top:50px; left:0; bottom:0; right:0; width:100%; height:calc(100% - 50px); border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
+<div id='calendar'></div>
 </body>
 </html>

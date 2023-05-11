@@ -9,5 +9,19 @@
         <url-pattern></url-pattern>
     </servlet-mapping>
 
-</web-app>
+    <context-param>
+        <param-name>wiki-entries-file</param-name>
+        <param-value>resources/entries.csv</param-value>
+    </context-param>
 
+    <context-param>
+        <param-name>all-calendar-items-file</param-name>
+        <param-value>resources/all-items.json</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>calendar-items-by-room-file</param-name>
+        <param-value>resources/items-by-room.json</param-value>
+    </context-param>
+
+</web-app>

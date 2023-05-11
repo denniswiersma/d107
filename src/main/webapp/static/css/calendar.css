@@ -27,6 +27,10 @@
 .fc-event {
     padding: 5px !important;
 }
+/*.fc-event-past {*/
+/*    border-color: #888888 !important;*/
+/*    background-color: #888888 !important;*/
+/*}*/
 .fc-event-time {
     font-size: 0.95em !important;
 }

@@ -16,11 +16,13 @@ const myTimeFormat = {
     meridiem: false
 }
 // const groupFullNames = {
-//     BFV1: "Bio-informatica Jaar 1",
-//     BFV2: "Bio-informatica Jaar 2",
-//     BFV3: "Bio-informatica Jaar 3",
-//     BFVB3: "Minor Bioinformatics for the Life Sciences",
-//     DSLSR: "Master Data Science for Life Sciences",
+//     "BFV1": "Bioinformatics Year 1",
+//     "BFV2": "Bioinformatics Year 2",
+//     "BFV3": "Bioinformatics Year 3",
+//     "BFV3 gr1": "Bioinformatics Minor HTHPC",
+//     "BFV3 gr2": "Bioinformatics Minor Application Design>",
+//     "BFVB3": "Minor Bioinformatics for the Life Sciences",
+//     "DSLSR": "Master Data Science for Life Sciences",
 // }
 const roomNames = {
     10017: "ZP11/D1.07",
@@ -31,8 +33,8 @@ const roomNames = {
 
 $(document).ready(async function () {
     // Fetch calendar events/items
-    // const allItems = await fetchJSON("https://www.d107.nl/api/get-all-calendar-items");
-    const itemsByRoom = await fetchJSON("https://www.d107.nl/api/get-calendar-items-by-room/");
+    // const allItems = await fetchJSON("/api/get-all-calendar-items");
+    const itemsByRoom = await fetchJSON("/api/get-calendar-items-by-room/");
 
     // Create calendar
     let calendarEl;

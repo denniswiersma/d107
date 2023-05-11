@@ -16,9 +16,9 @@
 <body>
 <header class="inner navbar" th:fragment="navbar(active_page)">
   <a th:href="@{/}" th:classappend="${active_page == 'home'} ? 'active'">Home</a>
-  <a th:href="@{calendar/}" th:classappend="${active_page == 'calendar'} ? 'active'">Calendar</a>
-<!--  <a th:href="@{wiki}" th:classappend="${active_page == 'wiki'} ? 'active'">Wiki</a>-->
-  <a th:href="@{bioinf-clicker/}" th:classappend="${active_page == 'bioinf-clicker'} ? 'active'">Bioinf-Clicker</a>
+  <a th:href="@{/calendar/}" th:classappend="${active_page == 'calendar'} ? 'active'">Calendar</a>
+<!--  <a th:href="@{/wiki}" th:classappend="${active_page == 'wiki'} ? 'active'">Wiki</a>-->
+  <a th:href="@{/bioinf-clicker/}" th:classappend="${active_page == 'bioinf-clicker'} ? 'active'">Bioinf-Clicker</a>
 </header>
 </body>
 </html>

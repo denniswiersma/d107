@@ -31,8 +31,8 @@ const roomNames = {
 
 $(document).ready(async function () {
     // Fetch calendar events/items
-    // const allItems = await fetchJSON("api/get-all-calendar-items");
-    const itemsByRoom = await fetchJSON("api/get-calendar-items-by-room");
+    // const allItems = await fetchJSON("https://www.d107.nl/api/get-all-calendar-items");
+    const itemsByRoom = await fetchJSON("https://www.d107.nl/api/get-calendar-items-by-room/");
 
     // Create calendar
     let calendarEl;

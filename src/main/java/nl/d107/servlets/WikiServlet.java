@@ -12,7 +12,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "WikiServlet", urlPatterns = "/wiki", loadOnStartup = 1)
+@WebServlet(name = "WikiServlet", urlPatterns = "/wiki/", loadOnStartup = 1)
 public class WikiServlet extends HttpServlet {
     private TemplateEngine templateEngine;
 

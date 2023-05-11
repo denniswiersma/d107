@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "ClickerServlet", urlPatterns = "/bioinf-clicker", loadOnStartup = 1)
+@WebServlet(name = "ClickerServlet", urlPatterns = "/bioinf-clicker/", loadOnStartup = 1)
 public class ClickerServlet extends HttpServlet {
     private TemplateEngine templateEngine;
 

@@ -9,7 +9,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "CalendarServlet", urlPatterns = "/calendar", loadOnStartup = 1)
+@WebServlet(name = "CalendarServlet", urlPatterns = "/calendar/", loadOnStartup = 1)
 public class CalendarServlet extends HttpServlet {
     private TemplateEngine templateEngine;
 

@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-@WebServlet(name = "GetAllCalendarItemsServlet", value = "/api/get-all-calendar-items")
+@WebServlet(name = "GetAllCalendarItemsServlet", value = "/api/get-all-calendar-items/")
 public class GetAllCalendarItemsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // Read the contents of the JSON file into a string

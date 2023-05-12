@@ -22,7 +22,7 @@ public class SecretBioinfClickerServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-        System.out.println("[Servlet] Initialising secretBioinfClickerServlet");
+        System.out.println("[Servlet] Initialising SecretBioinfClickerServlet");
         this.templateEngine = WebConfig.getTemplateEngine();
     }
 

@@ -23,7 +23,7 @@ function getDateRange() {
     let end = new Date(start);
     end.setDate(end.getDate() + 4 * 7);
     // Return UTC strings
-    return [toUTCString(start), toUTCString(end)];
+    return {start: toUTCString(start), end: toUTCString(end)};
 }
 
 async function doRequest(requestUrl, requestData) {
@@ -42,8 +42,8 @@ async function getAllDataForGroups(groups) {
     const requestData = {
         sources: ["2", "1"],
         schoolId: "14",
-        rangeStart: getDateRange()[0],
-        rangeEnd: getDateRange()[1],
+        rangeStart: getDateRange().start,
+        rangeEnd: getDateRange().end,
         storeSelection: true,
         includePersonal: false,
         includeConnectingRoomInfo: true
@@ -72,6 +72,16 @@ function createCleanObject(item) {
         rooms: item["Rooms"].map(({Id}) => Id),
         lecturers: item["Lecturers"].map(entry => (`${entry['Description'].replace(/(, )$/, "")} (${entry['Code']})`)),
     }
+}
+
+function createResponseObject(eventItems) {
+    let timeNow = new Date();
+    timeNow.setHours(timeNow.getHours() + 2);
+    return {
+        gatherDate: toUTCString(timeNow),
+        dateRange: getDateRange(),
+        items: eventItems
+    };
 }
 
 function download(content, fileName, contentType) {
@@ -112,6 +122,5 @@ $.each(await getAllDataForGroups(groupList), function (index, item) {
     });
 });
 
-let timeNow = new Date();timeNow.setHours(timeNow.getHours() + 2);
-download(JSON.stringify({gatherDate: toUTCString(timeNow), items: allItems}), "all-items.json", 'text/plain');
-download(JSON.stringify({gatherDate: toUTCString(timeNow), items: itemsByRoom}), "items-by-room.json", 'text/plain');
+download(JSON.stringify(createResponseObject(allItems)), "all-items.json", 'text/plain');
+download(JSON.stringify(createResponseObject(itemsByRoom)), "items-by-room.json", 'text/plain');

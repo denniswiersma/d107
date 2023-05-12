@@ -2,12 +2,6 @@ async function fetchJSON(url) {
     const response = await fetch(url);
     return await response.json();
 }
-function setToMonday(date) {
-    let day = date.getDay() || 7;
-    if (day !== 1)
-        date.setHours(-24 * (day - 1));
-    return date;
-}
 
 const myTimeFormat = {
     hour: "2-digit",
@@ -52,12 +46,7 @@ $(document).ready(async function () {
         dayHeaderFormat: "EEE dd/MM",
         slotLabelFormat: myTimeFormat,
         eventTimeFormat: myTimeFormat,
-        validRange: function (nowDate) {
-            let curMonday = setToMonday(nowDate);
-            let endMonday = new Date(curMonday);
-            endMonday.setDate(endMonday.getDate() + 4 * 7 - 1)
-            return {start: curMonday, end: endMonday};
-        },
+        validRange: itemsByRoom.dateRange,
         headerToolbar: {
             left: "",
             center: "title",

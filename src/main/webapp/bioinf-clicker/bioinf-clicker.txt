@@ -35,7 +35,7 @@ Buildings
 
 	*Array|Arrays
             name:Array|Arrays
-            desc:Dè datastructuur waarin je direct overal bij kan.<//><b>Effect:</b><.>Produces 1 ECs every second.
+            desc:Dè datastructuur waarin je direct overal bij kan.<//><b>Effect:</b><.>Produces 0.1 ECs every second.
             cost:1 EC
             on tick:yield 0.1 EC
             unlocked
@@ -49,94 +49,105 @@ Buildings
 
     *Tomcat|Tomcats
             name:Tomcat|Tomcats
-            desc:Iedereens favoriete webserver voor java.<//><b>Effect:</b><.>Produces 1 ECs every second.
+            desc:Iedereens favoriete webserver voor java.<//><b>Effect:</b><.>Produces 10 ECs every second.
             cost:100 EC
             on tick:yield 10 EC
             req:1 EC:earned
 
     *Databeestje|Databeestjes
             name:Databeestje|Databeestjes
-            desc:Een databeestje waar je al je data in op kan slaan.<//><b>Effect:</b><.>Produces 1 ECs every second.
+            desc:Een databeestje waar je al je data in op kan slaan.<//><b>Effect:</b><.>Produces 1000 ECs every second.
             cost:1000 EC
             on tick:yield 100 EC
             req:1 EC:earned
 
     *Thread|Threads
             name:Thread|Threads
-            desc:Éen thread is goed, maar meer is beter. Multitasktijd!<//><b>Effect:</b><.>Produces 1 ECs every second.
+            desc:Éen thread is goed, maar meer is beter. Multitasktijd!<//><b>Effect:</b><.>Produces 10000 ECs every second.
             cost:10000 EC
             on tick:yield 1000 EC
             req:1 EC:earned
 
     *Process|Processes
             name:Process|Processes
-            desc:Fuck python's global interpreter lock!<//><b>Effect:</b><.>Produces 1 ECs every second.
+            desc:Fuck python's global interpreter lock!<//><b>Effect:</b><.>Produces 100000 ECs every second.
             cost:100000 EC
             on tick:yield 10000 EC
             req:1 EC:earned
 
     *Core|Cores
             name:Core|Cores
-            desc:Meer cores om meer te doen!<//><b>Effect:</b><.>Produces 1 ECs every second.
+            desc:Meer cores om meer te doen!<//><b>Effect:</b><.>Produces 1000000 ECs every second.
             cost:1000000 EC
             on tick:yield 100000 EC
             req:1 EC:earned
 
     *CPU|CPUs
             name:CPU|CPUs
-            desc:Heb je er meestal maar eentje van per PC, maar wat nou als meer?!?<//><b>Effect:</b><.>Produces 1 ECs every second.
+            desc:Heb je er meestal maar eentje van per PC, maar wat nou als meer?!?<//><b>Effect:</b><.>Produces 1000000 ECs every second.
             cost:10000000 EC
             on tick:yield 1000000 EC
             req:1 EC:earned
 
     *GPU|GPUs
             name:GPU|GPUs
-            desc:Voor het echt harde bioinf werk.<//><b>Effect:</b><.>Produces 1 ECs every second.
+            desc:Voor het echt harde bioinf werk.<//><b>Effect:</b><.>Produces 10000000 ECs every second.
             cost:100000000 EC
             on tick:yield 10000000 EC
             req:1 EC:earned
 
 	*Nuc|Nucs
     		name:Nuc computer|Nuc computers
-    		desc:Een mini PC voor al je open office needs!<//><b>Effect:</b><.>Produces 1 ECs every 10 seconds.
+    		desc:Een mini PC voor al je open office needs!<//><b>Effect:</b><.>Produces 1000000000 ECs every 10 seconds.
     		cost:1000000000 EC
     		on tick:yield 100000000 EC
     		req:1 EC:earned
 
     *BinPC|BinPCs
             name:Bin PC|Bin PCs
-            desc:Een krachtige computer op het Bin netwerk.<//><b>Effect:</b><.>Produces 1 ECs every second.
+            desc:Een krachtige computer op het Bin netwerk.<//><b>Effect:</b><.>Produces 1000000000 ECs every second.
             cost:10000000000 EC
             on tick:yield 1000000000 EC
             req:1 EC:earned
 
     *Mordor
             name:Mordor
-            desc:Dè centrale Bin server.<//><b>Effect:</b><.>Produces 5 ECs every second.
+            desc:Dè centrale Bin server.<//><b>Effect:</b><.>Produces 10000000000 ECs every second.
             cost:100000000000 EC
             on tick:yield 10000000000 EC
             req:1 EC:earned
 
     *Assemblix
             name:Assemblix
-            desc:De krachtige Bin server voor al je bioinformatics needs.<//><b>Effect:</b><.>Produces 15 ECs every second.
+            desc:De krachtige Bin server voor al je bioinformatics needs.<//><b>Effect:</b><.>Produces 100000000000 ECs every second.
             cost:1000000000000 EC
             on tick:yield 100000000000 EC
             req:1 EC:earned
 
     *Serverkamer|Serverkamer
             name:Serverkamer|Serverkamers
-            desc:Waarom één server als je er ook een hele kamer mee kan vullen?<//><b>Effect:</b><.>Produces 15 ECs every second.
+            desc:Waarom één server als je er ook een hele kamer mee kan vullen?<//><b>Effect:</b><.>Produces 10000000000000 ECs every second.
             cost:10000000000000 EC
             on tick:yield 1000000000000 EC
             req:1 EC:earned
 
     *Servergebouw|Servergebouw
             name:Servergebouw|Servergebouwen
-            desc:En als je dan ook nog meerdere kamers hebt...<//><b>Effect:</b><.>Produces 15 ECs every second.
+            desc:En als je dan ook nog meerdere kamers hebt...<//><b>Effect:</b><.>Produces 100000000000000 ECs every second.
             cost:100000000000000 EC
             on tick:yield 10000000000000 EC
             req:1 EC:earned
+
+Upgrades
+	*TEMPLATE
+		on click:anim glow
+
+	*crispr
+		name:CRISPR gene editing
+		desc:Jouw hand wordt magischer door gen-editing!<//><b>Effect:</b><.>+0.1 EC/click
+		cost:5 EC
+		passive:increase EC yield of ECButton by 0.1
+		req:10 EC:earned
 
 Achievements
 	*TEMPLATE

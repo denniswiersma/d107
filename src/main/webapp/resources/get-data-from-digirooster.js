@@ -102,26 +102,21 @@ const groupList = {
     BFVB3: {year: 3, id: "7851"}, // Minor Bio-Informatica
     DSLSR: {year: 1, id: "8286"}, // Master Data Science for Life Sciences
 };
+const coolRooms = [10017, 10018, 10033, 10034];
+
 let allItems = [];
-let itemsByRoom = {
-    10017: [],
-    10018: [],
-    10033: [],
-    10034: [],
-};
+let onlyCoolRooms = [];
 let amountOfWeeks = 8;
 
 $.each(await getAllDataForGroups(groupList), function (index, item) {
     let cleanItem = createCleanObject(item);
     allItems.push(cleanItem);
 
-    // Sort and filter on our 'cool' rooms
-    cleanItem.rooms.map( roomId => {
-        if (Object.keys(itemsByRoom).includes(roomId.toString())) {
-            itemsByRoom[roomId].push(cleanItem);
-        }
-    });
+    // Filter our 'cool' rooms
+    if ( coolRooms.some(coolRoom => cleanItem.rooms.includes(coolRoom)) ) {
+        onlyCoolRooms.push(cleanItem);
+    }
 });
 
 download(JSON.stringify(createResponseObject(allItems)), "all-items.json", 'text/plain');
-download(JSON.stringify(createResponseObject(itemsByRoom)), "items-by-room.json", 'text/plain');
+download(JSON.stringify(createResponseObject(onlyCoolRooms)), "only-cool-rooms.json", 'text/plain');

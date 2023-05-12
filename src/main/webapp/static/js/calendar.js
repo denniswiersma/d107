@@ -28,7 +28,7 @@ const roomNames = {
 $(document).ready(async function () {
     // Fetch calendar events/items
     // const allItems = await fetchJSON("/api/get-all-calendar-items");
-    const itemsByRoom = await fetchJSON("/api/get-calendar-items-by-room/");
+    const onlyCoolRoomsItems = await fetchJSON("/api/get-only-cool-rooms-calendar-items/");
 
     // Create calendar
     let calendarEl;
@@ -46,13 +46,13 @@ $(document).ready(async function () {
         dayHeaderFormat: "EEE dd/MM",
         slotLabelFormat: myTimeFormat,
         eventTimeFormat: myTimeFormat,
-        validRange: itemsByRoom.dateRange,
+        validRange: onlyCoolRoomsItems.dateRange,
         headerToolbar: {
             left: "",
             center: "title",
             right: "today prev,next"
         },
-        events: Object.values(itemsByRoom.items).flat(),
+        events: onlyCoolRoomsItems.items,
         eventColor: "#6339cc",
         eventDidMount: function(arg) {
             // Collect current event element
@@ -93,12 +93,12 @@ $(document).ready(async function () {
     });
 
     // Add an option for each room
-    Object.keys(itemsByRoom.items).forEach(room => {
+    for (const [roomId, roomName] of Object.entries(roomNames)) {
         const option = document.createElement("option");
-        option.textContent = roomNames[room];
-        option.value = room;
+        option.textContent = roomName;
+        option.value = roomId;
         roomSelect.appendChild(option);
-    });
+    }
 
     // Add the roomSelect element to the left div of the header toolbar
     const headerToolbar = calendarEl.firstChild;
@@ -107,5 +107,5 @@ $(document).ready(async function () {
     roomSelect.dispatchEvent(new Event("change"));
 
     // Set the last update time
-    $("#last-update-time")[0].innerHTML = luxon.DateTime.fromISO(itemsByRoom.gatherDate).toFormat("dd MMMM yyyy 'at' HH:mm:ss");
+    $("#last-update-time")[0].innerHTML = luxon.DateTime.fromISO(onlyCoolRoomsItems.gatherDate).toFormat("dd MMMM yyyy 'at' HH:mm:ss");
 });

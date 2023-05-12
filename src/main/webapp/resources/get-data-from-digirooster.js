@@ -112,5 +112,6 @@ $.each(await getAllDataForGroups(groupList), function (index, item) {
     });
 });
 
-download(JSON.stringify(allItems), "all-items.json", 'text/plain');
-download(JSON.stringify(itemsByRoom), "items-by-room.json", 'text/plain');
+let timeNow = new Date();timeNow.setHours(timeNow.getHours() + 2);
+download(JSON.stringify({gatherDate: toUTCString(timeNow), items: allItems}), "all-items.json", 'text/plain');
+download(JSON.stringify({gatherDate: toUTCString(timeNow), items: itemsByRoom}), "items-by-room.json", 'text/plain');

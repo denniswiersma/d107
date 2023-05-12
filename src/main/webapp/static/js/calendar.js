@@ -63,7 +63,7 @@ $(document).ready(async function () {
             center: "title",
             right: "today prev,next"
         },
-        events: Object.values(itemsByRoom).flat(),
+        events: Object.values(itemsByRoom.items).flat(),
         eventColor: "#6339cc",
         eventDidMount: function(arg) {
             // Collect current event element
@@ -104,7 +104,7 @@ $(document).ready(async function () {
     });
 
     // Add an option for each room
-    Object.keys(itemsByRoom).forEach(room => {
+    Object.keys(itemsByRoom.items).forEach(room => {
         const option = document.createElement("option");
         option.textContent = roomNames[room];
         option.value = room;
@@ -116,4 +116,7 @@ $(document).ready(async function () {
     headerToolbar.firstChild.appendChild(roomSelect);
     // Trigger filter for page load
     roomSelect.dispatchEvent(new Event("change"));
+
+    // Set the last update time
+    $("#last-update-time")[0].innerHTML = luxon.DateTime.fromISO(itemsByRoom.gatherDate).toFormat("dd MMMM yyyy 'at' HH:mm:ss");
 });

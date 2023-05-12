@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "secretBioinfClickerServlet", urlPatterns = "/secret-bioinf-clicker/", loadOnStartup = 1)
-public class secretBioinfClickerServlet extends HttpServlet {
+@WebServlet(name = "SecretBioinfClickerServlet", urlPatterns = "/secret-bioinf-clicker/", loadOnStartup = 1)
+public class SecretBioinfClickerServlet extends HttpServlet {
     private TemplateEngine templateEngine;
 
     /**

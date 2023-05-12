@@ -7,7 +7,7 @@ Let's make a game!
     version:0.1
 
 Settings
-    building cost increase:150%
+    building cost increase:125%
     building cost refund:30%
 
 Layout

@@ -48,7 +48,7 @@ Buildings
             req:1 EC:earned
 
     *Tomcat|Tomcats
-            name:Linked List|Linked Lists
+            name:Tomcat|Tomcats
             desc:Iedereens favoriete webserver voor java.<//><b>Effect:</b><.>Produces 1 ECs every second.
             cost:100 EC
             on tick:yield 10 EC
@@ -125,7 +125,7 @@ Buildings
             req:1 EC:earned
 
     *Serverkamer|Serverkamer
-            name:Servergebouw|Servergebouwen
+            name:Serverkamer|Serverkamers
             desc:Waarom één server als je er ook een hele kamer mee kan vullen?<//><b>Effect:</b><.>Produces 15 ECs every second.
             cost:10000000000000 EC
             on tick:yield 1000000000000 EC

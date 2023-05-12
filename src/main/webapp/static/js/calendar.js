@@ -18,17 +18,18 @@ const myTimeFormat = {
 //     "BFVB3": "Minor Bioinformatics for the Life Sciences",
 //     "DSLSR": "Master Data Science for Life Sciences",
 // }
-const roomNames = {
+const coolRooms = {
     10017: "ZP11/D1.07",
     10018: "ZP11/D1.08",
     10033: "ZP11/H1.122",
     10034: "ZP11/H1.86",
+    10508: "ZP11/H1.88A",
 };
 
 $(document).ready(async function () {
     // Fetch calendar events/items
     // const allItems = await fetchJSON("/api/get-all-calendar-items");
-    const onlyCoolRoomsItems = await fetchJSON("/api/get-only-cool-rooms-calendar-items/");
+    const onlyCoolRoomsObject = await fetchJSON("/api/get-only-cool-rooms-calendar-items/");
 
     // Create calendar
     let calendarEl;
@@ -46,13 +47,13 @@ $(document).ready(async function () {
         dayHeaderFormat: "EEE dd/MM",
         slotLabelFormat: myTimeFormat,
         eventTimeFormat: myTimeFormat,
-        validRange: onlyCoolRoomsItems.dateRange,
+        validRange: onlyCoolRoomsObject.dateRange,
         headerToolbar: {
             left: "",
             center: "title",
             right: "today prev,next"
         },
-        events: onlyCoolRoomsItems.items,
+        events: onlyCoolRoomsObject.items,
         eventColor: "#6339cc",
         eventDidMount: function(arg) {
             // Collect current event element
@@ -61,7 +62,7 @@ $(document).ready(async function () {
             // Create and append event group
             let groupEl = document.createElement("div")
             groupEl.classList.add("event-group");
-            groupEl.innerHTML = arg.event.extendedProps.group;
+            groupEl.innerHTML = arg.event.extendedProps.groups.join(", ");
             contentsEl.appendChild(groupEl);
 
             // Create and append event lecturers
@@ -83,7 +84,7 @@ $(document).ready(async function () {
     roomSelect.addEventListener("change", () => {
         const selectedRoom = roomSelect.value;
         calendar.getEvents().forEach(calendarEvent => {
-            let eventRooms = calendarEvent.extendedProps.rooms.map(roomInt => roomInt.toString());
+            let eventRooms = calendarEvent.extendedProps.rooms.map(roomId => roomId.toString());
             if (eventRooms.includes(selectedRoom)) {
                 calendarEvent.setProp("display", "auto");
             } else {
@@ -93,7 +94,7 @@ $(document).ready(async function () {
     });
 
     // Add an option for each room
-    for (const [roomId, roomName] of Object.entries(roomNames)) {
+    for (const [roomId, roomName] of Object.entries(coolRooms)) {
         const option = document.createElement("option");
         option.textContent = roomName;
         option.value = roomId;

@@ -12,7 +12,7 @@ function setToMonday(date) {
 }
 
 function toUTCString(date) {
-    return date.toISOString().split('.', 1)[0];
+    return date.toISOString().split(".", 1)[0];
 }
 
 function getDateRange() {
@@ -62,15 +62,16 @@ async function getAllDataForGroups(groups) {
     return allItems;
 }
 
-function createCleanObject(item) {
+function createFullcalendarEventObject(item) {
     return {
         title: item["Name"],
         start: item["Start"],
         end: item["End"],
-        group: item["Subgroups"][0].Name,
-        // groups: item["Subgroups"].map(({Name}) => Name),
-        rooms: item["Rooms"].map(({Id}) => Id),
-        lecturers: item["Lecturers"].map(entry => (`${entry['Description'].replace(/(, )$/, "")} (${entry['Code']})`)),
+        extendedProps: {
+            groups: item["Subgroups"].map(({Name}) => Name),
+            rooms: item["Rooms"].map(({Id}) => Id),
+            lecturers: item["Lecturers"].map(entry => (`${entry["Description"].replace(/(, )$/, "")} (${entry["Code"]})`)),
+        },
     }
 }
 
@@ -102,21 +103,22 @@ const groupList = {
     BFVB3: {year: 3, id: "7851"}, // Minor Bio-Informatica
     DSLSR: {year: 1, id: "8286"}, // Master Data Science for Life Sciences
 };
-const coolRooms = [10017, 10018, 10033, 10034];
+const coolRooms = [10017, 10018, 10033, 10034, 10508];
+//                 D1.07, D1.08, H1.122,H1.86, H1.88A
 
 let allItems = [];
 let onlyCoolRooms = [];
 let amountOfWeeks = 8;
 
 $.each(await getAllDataForGroups(groupList), function (index, item) {
-    let cleanItem = createCleanObject(item);
+    let cleanItem = createFullcalendarEventObject(item);
     allItems.push(cleanItem);
 
     // Filter our 'cool' rooms
-    if ( coolRooms.some(coolRoom => cleanItem.rooms.includes(coolRoom)) ) {
+    if ( coolRooms.some(coolRoom => cleanItem.extendedProps.rooms.includes(coolRoom)) ) {
         onlyCoolRooms.push(cleanItem);
     }
 });
 
-download(JSON.stringify(createResponseObject(allItems)), "all-items.json", 'text/plain');
-download(JSON.stringify(createResponseObject(onlyCoolRooms)), "only-cool-rooms.json", 'text/plain');
+download(JSON.stringify(createResponseObject(allItems)), "all-items.json", "text/plain");
+download(JSON.stringify(createResponseObject(onlyCoolRooms)), "only-cool-rooms.json", "text/plain");

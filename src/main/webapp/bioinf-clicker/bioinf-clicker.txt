@@ -142,12 +142,40 @@ Upgrades
 	*TEMPLATE
 		on click:anim glow
 
-	*crispr
-		name:CRISPR gene editing
-		desc:Jouw hand wordt magischer door gen-editing!<//><b>Effect:</b><.>+0.1 EC/click
-		cost:5 EC
+	*crispr1
+		name:CRISPR gene-edit 1
+		desc:De verandering van een nucleotietje door gene-editing zorgt er voor dat je hand magischer wordt!<//><b>Effect:</b><.>+0.1 EC/click
+		cost:10 EC
 		passive:increase EC yield of ECButton by 0.1
 		req:10 EC:earned
+
+	*crispr2
+        name:CRISPR gene-edit 2
+        desc:Gene-editing zorgt er voor dat jouw vingers een millimeter groeien!<//><b>Effect:</b><.>+0.2 EC/click
+        cost:20 EC
+        passive:increase EC yield of ECButton by 0.2
+        req:20 EC:earned
+
+	*crispr3
+        name:CRISPR gene-edit 3
+        desc:Je groeit gewoon een 6e vinger door deze gene-edit!!!<//><b>Effect:</b><.>+0.6 EC/click
+        cost:25 EC
+        passive:increase EC yield of ECButton by 0.6
+        req:50 EC:earned
+
+	*crispr4
+        name:CRISPR gene-edit 4
+        desc:Wat de fock... is dat nou een 3e arm?!?!?!?!<//><b>Effect:</b><.>+2 EC/click
+        cost:10000 EC
+        passive:increase EC yield of ECButton by 2
+        req:100 EC:earned
+
+	*crispr5
+        name:CRISPR gene-edit 5
+        desc:Broer, dit is niet okay. Je hebt nu een proces in je brein dat dit spel hackt en je meer EC's geeft??<//><b>Effect:</b><.>+17 EC/click
+        cost:10000000 EC
+        passive:increase EC yield of ECButton by 17
+        req:100000 EC:earned
 
 Achievements
 	*TEMPLATE

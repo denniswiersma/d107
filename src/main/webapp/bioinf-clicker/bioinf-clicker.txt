@@ -145,7 +145,7 @@ Achievements
 	*AlgData1
         name:Algoritmen & Datastructuren master
         desc:Heb <b>10</b> arrays en <b>10</b> linked lists.
-        req:(10 Arrays and LinkedLists)
+        req:(Arrays and LinkedLists>10)
 
 	*Arne1
 		name:Arne zou trots zijn!

@@ -4,13 +4,15 @@ import nl.d107.config.WebConfig;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ClickerServlet", urlPatterns = "/bioinf-clicker/", loadOnStartup = 1)
-public class ClickerServlet extends HttpServlet {
+@WebServlet(name = "secretBioinfClickerServlet", urlPatterns = "/secret-bioinf-clicker/", loadOnStartup = 1)
+public class secretBioinfClickerServlet extends HttpServlet {
     private TemplateEngine templateEngine;
 
     /**
@@ -20,7 +22,7 @@ public class ClickerServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-        System.out.println("[Servlet] Initialising ClickerServlet");
+        System.out.println("[Servlet] Initialising secretBioinfClickerServlet");
         this.templateEngine = WebConfig.getTemplateEngine();
     }
 
@@ -31,6 +33,6 @@ public class ClickerServlet extends HttpServlet {
         WebContext ctx = new WebContext(request, response, request.getServletContext(), request.getLocale());
 
         // Process the template and data into a page
-        templateEngine.process("bioinf-clicker", ctx, response.getWriter());
+        templateEngine.process("secret-bioinf-clicker", ctx, response.getWriter());
     }
 }

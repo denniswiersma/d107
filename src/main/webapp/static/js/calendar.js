@@ -107,6 +107,10 @@ $(document).ready(async function () {
     // Trigger filter for page load
     roomSelect.dispatchEvent(new Event("change"));
 
-    // Set the last update time
-    $("#last-update-time")[0].innerHTML = luxon.DateTime.fromISO(onlyCoolRoomsItems.gatherDate).toFormat("dd MMMM yyyy 'at' HH:mm:ss");
+    // Add manual update note with last update time
+    let updateNoteEl = document.createElement("div");
+    let lastUpdateTime = luxon.DateTime.fromISO(onlyCoolRoomsObject.gatherDate).toFormat("dd MMMM yyyy 'at' HH:mm:ss");
+    updateNoteEl.id = "update-note";
+    updateNoteEl.innerHTML = `Note: Calendar data is updated manually. Last update: <u>${lastUpdateTime}</u>`;
+    document.body.appendChild(updateNoteEl);
 });

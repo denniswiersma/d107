@@ -10,9 +10,7 @@
 }
 #update-note {
     margin: 0 0 0 25px;
-}
-#last-update-time {
-    text-decoration: underline;
+    font-style: italic;
 }
 
 /*  Row heights  */

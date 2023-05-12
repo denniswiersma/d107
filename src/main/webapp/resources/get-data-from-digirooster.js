@@ -21,7 +21,7 @@ function getDateRange() {
     start.setHours(2, 0, 0, 0);
     // Monday 4 weeks from now
     let end = new Date(start);
-    end.setDate(end.getDate() + 4 * 7);
+    end.setDate(end.getDate() + amountOfWeeks * 7);
     // Return UTC strings
     return {start: toUTCString(start), end: toUTCString(end)};
 }
@@ -109,6 +109,7 @@ let itemsByRoom = {
     10033: [],
     10034: [],
 };
+let amountOfWeeks = 8;
 
 $.each(await getAllDataForGroups(groupList), function (index, item) {
     let cleanItem = createCleanObject(item);

@@ -9,8 +9,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "CalendarServlet", urlPatterns = "/calendar/", loadOnStartup = 1)
-public class CalendarServlet extends HttpServlet {
+@WebServlet(name = "RoomCalendarServlet", urlPatterns = {"/room-calendar/", "/calendar/"}, loadOnStartup = 1)
+public class RoomCalendarServlet extends HttpServlet {
     private TemplateEngine templateEngine;
 
     /**
@@ -20,7 +20,7 @@ public class CalendarServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-        System.out.println("[Servlet] Initialising CalendarServlet");
+        System.out.println("[Servlet] Initialising RoomCalendarServlet");
         this.templateEngine = WebConfig.getTemplateEngine();
     }
 
@@ -31,6 +31,6 @@ public class CalendarServlet extends HttpServlet {
         WebContext ctx = new WebContext(request, response, request.getServletContext(), request.getLocale());
 
         // Process the template and data into a page
-        templateEngine.process("calendar", ctx, response.getWriter());
+        templateEngine.process("room-calendar", ctx, response.getWriter());
     }
 }

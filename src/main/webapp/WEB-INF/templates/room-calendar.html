@@ -2,18 +2,18 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>D1.07 | Calendar</title>
+  <title>D1.07 | Room Calendar</title>
 
   <!--  Stylesheets  -->
   <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-  <link rel="stylesheet" type="text/css" href="/static/css/calendar.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/room-calendar.css">
 
   <!--  Scripts  -->
   <script src="/static/js/libs/jquery-3.6.3.min.js"></script>
   <script src="/static/js/libs/luxon-2.5.2.min.js"></script>
   <script src="/static/js/libs/fullcalendar/fullcalendar-6.1.7.min.js"></script>
   <script src="/static/js/libs/fullcalendar/luxon2-connector/index.global.min.js"></script>
-  <script src="/static/js/calendar.js"></script>
+  <script src="/static/js/room-calendar.js"></script>
 
   <!--  Website icons  -->
   <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
@@ -23,7 +23,7 @@
 </head>
 <body>
 
-<header th:replace="~{fragments :: navbar('calendar')}"></header>
+<header th:replace="~{fragments :: navbar('room-calendar')}"></header>
 
 <section id="modal-section">
   <span class="overlay"></span>

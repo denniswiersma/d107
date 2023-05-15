@@ -22,9 +22,35 @@
   <link rel="manifest" href="/static/favicon/site.webmanifest">
 </head>
 <body>
+
 <header th:replace="~{fragments :: navbar('calendar')}"></header>
 
-<div id="calendar"></div>
+<section id="modal-section">
+  <span class="overlay"></span>
+  <div class="modal-box">
+    <div id="modal-header">
+      <span id="modal-event-title"></span>
+      <span id="modal-event-time"></span>
+      <button class="modal-close-btn"></button>
+    </div>
+    <div id="modal-body">
+      <div class="modal-body-row">
+        <span>Groups:</span>
+        <div id="modal-event-groups"></div>
+      </div>
+      <div class="modal-body-row">
+        <span>Lecturers:</span>
+        <div id="modal-event-lecturers"></div>
+      </div>
+      <div class="modal-body-row">
+        <span >Rooms:</span>
+        <div id="modal-event-rooms"></div>
+      </div>
+    </div>
+  </div>
+  <div id="calendar"></div>
+  <div id="update-note"></div>
+</section>
 
 </body>
 </html>

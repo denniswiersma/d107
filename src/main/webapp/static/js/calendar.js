@@ -9,15 +9,15 @@ const myTimeFormat = {
     hour12: false,
     meridiem: false
 }
-// const groupFullNames = {
-//     "BFV1": "Bioinformatics Year 1",
-//     "BFV2": "Bioinformatics Year 2",
-//     "BFV3": "Bioinformatics Year 3",
-//     "BFV3 gr1": "Bioinformatics Minor HTHPC",
-//     "BFV3 gr2": "Bioinformatics Minor Application Design>",
-//     "BFVB3": "Minor Bioinformatics for the Life Sciences",
-//     "DSLSR": "Master Data Science for Life Sciences",
-// }
+const groupFullNames = {
+    "BFV1": "Bioinformatics Year 1",
+    "BFV2": "Bioinformatics Year 2",
+    "BFV3": "Bioinformatics Year 3",
+    "BFV3 gr1": "Bioinformatics Minor HTHPC",
+    "BFV3 gr2": "Bioinformatics Minor Application Design",
+    "BFVB3": "Minor Bioinformatics for the Life Sciences",
+    "DSLSR": "Master Data Science for Life Sciences",
+}
 const coolRooms = {
     10017: "ZP11/D1.07",
     10018: "ZP11/D1.08",
@@ -27,6 +27,23 @@ const coolRooms = {
 };
 
 $(document).ready(async function () {
+    // Get all calendar event and modal elements
+    const section = document.querySelector("#modal-section"),
+        overlay = document.querySelector(".overlay"),
+        closeBtn = document.querySelector(".modal-close-btn"),
+        modalEventTitle = document.querySelector("#modal-event-title"),
+        modalEventTime = document.querySelector("#modal-event-time"),
+        modalEventGroups = document.querySelector("#modal-event-groups"),
+        modalEventLecturers = document.querySelector("#modal-event-lecturers"),
+        modalEventRooms = document.querySelector("#modal-event-rooms");
+
+    overlay.addEventListener("click", () =>
+        section.classList.remove("active")
+    );
+    closeBtn.addEventListener("click", () =>
+        section.classList.remove("active")
+    );
+
     // Fetch calendar events/items
     // const allItems = await fetchJSON("/api/get-all-calendar-items");
     const onlyCoolRoomsObject = await fetchJSON("/api/get-only-cool-rooms-calendar-items/");
@@ -74,7 +91,34 @@ $(document).ready(async function () {
                 lecturersDivEl.appendChild(lecturerEl);
             });
             contentsEl.appendChild(lecturersDivEl);
-        }
+        },
+        eventClick: function(info) {
+            section.classList.add("active");
+
+            // Title and time
+            modalEventTitle.innerHTML = info.event.title;
+            let startString = luxon.DateTime.fromJSDate(info.event.start).toFormat("dd MMMM yyyy HH:mm");
+            let endString = luxon.DateTime.fromJSDate(info.event.end).toFormat("HH:mm");
+            modalEventTime.innerHTML = `${startString} - ${endString}`;
+
+            // Groups
+            modalEventGroups.innerHTML = "";
+            for (const group of info.event.extendedProps.groups) {
+                modalEventGroups.innerHTML += `<div>${group} (${groupFullNames[group]})</div>`
+            }
+
+            // Lecturers
+            modalEventLecturers.innerHTML = "";
+            for (const lecturer of info.event.extendedProps.lecturers) {
+                modalEventLecturers.innerHTML += `<div>${lecturer}</div>`
+            }
+
+            // Rooms
+            modalEventRooms.innerHTML = "";
+            for (const roomId of info.event.extendedProps.rooms) {
+                modalEventRooms.innerHTML += `<div>${coolRooms[roomId]}</div>`
+            }
+        },
     })
     calendar.render();
 
@@ -108,9 +152,7 @@ $(document).ready(async function () {
     roomSelect.dispatchEvent(new Event("change"));
 
     // Add manual update note with last update time
-    let updateNoteEl = document.createElement("div");
+    let updateNoteEl = document.querySelector("#update-note");
     let lastUpdateTime = luxon.DateTime.fromISO(onlyCoolRoomsObject.gatherDate).toFormat("dd MMMM yyyy 'at' HH:mm:ss");
-    updateNoteEl.id = "update-note";
     updateNoteEl.innerHTML = `Note: Calendar data is updated manually. Last update: <u>${lastUpdateTime}</u>`;
-    document.body.appendChild(updateNoteEl);
 });

@@ -16,10 +16,11 @@ function toUTCString(date) {
 }
 
 function getDateRange() {
-    // Monday of current week
+    // Monday of past week
     let start = setToMonday(new Date());
     start.setHours(2, 0, 0, 0);
-    // Monday 4 weeks from now
+    start.setDate(start.getDate() - 7)
+    // Monday x amount of weeks from now
     let end = new Date(start);
     end.setDate(end.getDate() + amountOfWeeks * 7);
     // Return UTC strings

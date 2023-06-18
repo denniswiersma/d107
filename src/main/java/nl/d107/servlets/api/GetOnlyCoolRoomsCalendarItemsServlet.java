@@ -9,12 +9,12 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-@WebServlet(name = "GetCalendarItemsByRoomServlet", value = "/api/get-calendar-items-by-room/")
-public class GetCalendarItemsByRoomServlet extends HttpServlet {
+@WebServlet(name = "GetOnlyCoolRoomsCalendarItemsServlet", value = "/api/get-only-cool-rooms-calendar-items/")
+public class GetOnlyCoolRoomsCalendarItemsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // Read the contents of the JSON file into a string
-        String calendarItemsByRoomFile = getServletContext().getInitParameter("calendar-items-by-room-file");
-        String jsonFile = getServletContext().getRealPath(calendarItemsByRoomFile);
+        String onlyCoolRoomsCalendarItemsFile = getServletContext().getInitParameter("only-cool-rooms-calendar-items-file");
+        String jsonFile = getServletContext().getRealPath(onlyCoolRoomsCalendarItemsFile);
         String jsonData = new String(Files.readAllBytes(Paths.get(jsonFile)));
 
         // Set the content type of the response to JSON

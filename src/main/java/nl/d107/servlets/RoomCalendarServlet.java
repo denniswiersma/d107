@@ -4,15 +4,13 @@ import nl.d107.config.WebConfig;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "secretBioinfClickerServlet", urlPatterns = "/secret-bioinf-clicker/", loadOnStartup = 1)
-public class secretBioinfClickerServlet extends HttpServlet {
+@WebServlet(name = "RoomCalendarServlet", urlPatterns = {"/room-calendar/", "/calendar/"}, loadOnStartup = 1)
+public class RoomCalendarServlet extends HttpServlet {
     private TemplateEngine templateEngine;
 
     /**
@@ -22,7 +20,7 @@ public class secretBioinfClickerServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-        System.out.println("[Servlet] Initialising secretBioinfClickerServlet");
+        System.out.println("[Servlet] Initialising RoomCalendarServlet");
         this.templateEngine = WebConfig.getTemplateEngine();
     }
 
@@ -33,6 +31,6 @@ public class secretBioinfClickerServlet extends HttpServlet {
         WebContext ctx = new WebContext(request, response, request.getServletContext(), request.getLocale());
 
         // Process the template and data into a page
-        templateEngine.process("secret-bioinf-clicker", ctx, response.getWriter());
+        templateEngine.process("room-calendar", ctx, response.getWriter());
     }
 }

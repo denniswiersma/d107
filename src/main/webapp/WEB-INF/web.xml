@@ -20,8 +20,8 @@
     </context-param>
 
     <context-param>
-        <param-name>calendar-items-by-room-file</param-name>
-        <param-value>resources/items-by-room.json</param-value>
+        <param-name>only-cool-rooms-calendar-items-file</param-name>
+        <param-value>resources/only-cool-rooms.json</param-value>
     </context-param>
 
 </web-app>

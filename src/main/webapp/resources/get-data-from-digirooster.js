@@ -12,18 +12,19 @@ function setToMonday(date) {
 }
 
 function toUTCString(date) {
-    return date.toISOString().split('.', 1)[0];
+    return date.toISOString().split(".", 1)[0];
 }
 
 function getDateRange() {
-    // Monday of current week
+    // Monday of past week
     let start = setToMonday(new Date());
     start.setHours(2, 0, 0, 0);
-    // Monday 4 weeks from now
+    start.setDate(start.getDate() - 7)
+    // Monday x amount of weeks from now
     let end = new Date(start);
-    end.setDate(end.getDate() + 4 * 7);
+    end.setDate(end.getDate() + amountOfWeeks * 7);
     // Return UTC strings
-    return [toUTCString(start), toUTCString(end)];
+    return {start: toUTCString(start), end: toUTCString(end)};
 }
 
 async function doRequest(requestUrl, requestData) {
@@ -42,8 +43,8 @@ async function getAllDataForGroups(groups) {
     const requestData = {
         sources: ["2", "1"],
         schoolId: "14",
-        rangeStart: getDateRange()[0],
-        rangeEnd: getDateRange()[1],
+        rangeStart: getDateRange().start,
+        rangeEnd: getDateRange().end,
         storeSelection: true,
         includePersonal: false,
         includeConnectingRoomInfo: true
@@ -62,16 +63,27 @@ async function getAllDataForGroups(groups) {
     return allItems;
 }
 
-function createCleanObject(item) {
+function createFullcalendarEventObject(item) {
     return {
         title: item["Name"],
         start: item["Start"],
         end: item["End"],
-        group: item["Subgroups"][0].Name,
-        // groups: item["Subgroups"].map(({Name}) => Name),
-        rooms: item["Rooms"].map(({Id}) => Id),
-        lecturers: item["Lecturers"].map(entry => (`${entry['Description'].replace(/(, )$/, "")} (${entry['Code']})`)),
+        extendedProps: {
+            groups: item["Subgroups"].map(({Name}) => Name),
+            rooms: item["Rooms"].map(({Id}) => Id),
+            lecturers: item["Lecturers"].map(entry => (`${entry["Description"].replace(/(, )$/, "")} (${entry["Code"]})`)),
+        },
     }
+}
+
+function createResponseObject(eventItems) {
+    let timeNow = new Date();
+    timeNow.setHours(timeNow.getHours() + 2);
+    return {
+        gatherDate: toUTCString(timeNow),
+        dateRange: getDateRange(),
+        items: eventItems
+    };
 }
 
 function download(content, fileName, contentType) {
@@ -92,26 +104,22 @@ const groupList = {
     BFVB3: {year: 3, id: "7851"}, // Minor Bio-Informatica
     DSLSR: {year: 1, id: "8286"}, // Master Data Science for Life Sciences
 };
+const coolRooms = [10017, 10018, 10033, 10034, 10508];
+//                 D1.07, D1.08, H1.122,H1.86, H1.88A
+
 let allItems = [];
-let itemsByRoom = {
-    10017: [],
-    10018: [],
-    10033: [],
-    10034: [],
-};
+let onlyCoolRooms = [];
+let amountOfWeeks = 8;
 
 $.each(await getAllDataForGroups(groupList), function (index, item) {
-    let cleanItem = createCleanObject(item);
+    let cleanItem = createFullcalendarEventObject(item);
     allItems.push(cleanItem);
 
-    // Sort and filter on our 'cool' rooms
-    cleanItem.rooms.map( roomId => {
-        if (Object.keys(itemsByRoom).includes(roomId.toString())) {
-            itemsByRoom[roomId].push(cleanItem);
-        }
-    });
+    // Filter our 'cool' rooms
+    if ( coolRooms.some(coolRoom => cleanItem.extendedProps.rooms.includes(coolRoom)) ) {
+        onlyCoolRooms.push(cleanItem);
+    }
 });
 
-let timeNow = new Date();timeNow.setHours(timeNow.getHours() + 2);
-download(JSON.stringify({gatherDate: toUTCString(timeNow), items: allItems}), "all-items.json", 'text/plain');
-download(JSON.stringify({gatherDate: toUTCString(timeNow), items: itemsByRoom}), "items-by-room.json", 'text/plain');
+download(JSON.stringify(createResponseObject(allItems)), "all-items.json", "text/plain");
+download(JSON.stringify(createResponseObject(onlyCoolRooms)), "only-cool-rooms.json", "text/plain");

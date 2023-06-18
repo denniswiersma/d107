@@ -2,18 +2,18 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>D1.07 | Calendar</title>
+  <title>D1.07 | Room Calendar</title>
 
   <!--  Stylesheets  -->
   <link rel="stylesheet" type="text/css" href="/static/css/main.css">
-  <link rel="stylesheet" type="text/css" href="/static/css/calendar.css">
+  <link rel="stylesheet" type="text/css" href="/static/css/room-calendar.css">
 
   <!--  Scripts  -->
   <script src="/static/js/libs/jquery-3.6.3.min.js"></script>
   <script src="/static/js/libs/luxon-2.5.2.min.js"></script>
   <script src="/static/js/libs/fullcalendar/fullcalendar-6.1.7.min.js"></script>
   <script src="/static/js/libs/fullcalendar/luxon2-connector/index.global.min.js"></script>
-  <script src="/static/js/calendar.js"></script>
+  <script src="/static/js/room-calendar.js"></script>
 
   <!--  Website icons  -->
   <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
@@ -22,10 +22,35 @@
   <link rel="manifest" href="/static/favicon/site.webmanifest">
 </head>
 <body>
-<header th:replace="~{fragments :: navbar('calendar')}"></header>
 
-<div id="calendar"></div>
+<header th:replace="~{fragments :: navbar('room-calendar')}"></header>
 
-<div id="update-note"><i>Note: Calendar data is updated manually. Last update: <span id="last-update-time"></span></i></div>
+<section id="modal-section">
+  <span class="overlay"></span>
+  <div class="modal-box">
+    <div id="modal-header">
+      <span id="modal-event-title"></span>
+      <span id="modal-event-time"></span>
+      <button class="modal-close-btn"></button>
+    </div>
+    <div id="modal-body">
+      <div class="modal-body-row">
+        <span>Groups:</span>
+        <div id="modal-event-groups"></div>
+      </div>
+      <div class="modal-body-row">
+        <span>Lecturers:</span>
+        <div id="modal-event-lecturers"></div>
+      </div>
+      <div class="modal-body-row">
+        <span >Rooms:</span>
+        <div id="modal-event-rooms"></div>
+      </div>
+    </div>
+  </div>
+  <div id="calendar"></div>
+  <div id="update-note"></div>
+</section>
+
 </body>
 </html>

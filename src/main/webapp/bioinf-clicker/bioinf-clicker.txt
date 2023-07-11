@@ -205,3 +205,8 @@ Achievements
         name:Multimaster
         desc:Heb <b>10</b> cores.
         req:10 Cores
+
+    *Peter1
+	name:Beter dan Peter
+	desc: Je bent de ultieme serverbeheerder.
+	req:100 Servergebouw

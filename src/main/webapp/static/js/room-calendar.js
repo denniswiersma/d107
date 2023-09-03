@@ -15,17 +15,18 @@ const groupFullNames = {
     "BFV1 gr2": "Bioinformatics Elective Module Octave",
     "BFV2": "Bioinformatics Year 2",
     "BFV3": "Bioinformatics Year 3",
-    "BFV3 gr1": "Bioinformatics Minor HTHPC",
-    "BFV3 gr2": "Bioinformatics Minor Application Design",
+    // "BFV3 gr1": "Bioinformatics Minor HTHPC",
+    // "BFV3 gr2": "Bioinformatics Minor Application Design",
     "BFVB3": "Minor Bioinformatics for the Life Sciences",
+    // "BFVF3": "???",
     "DSLSR": "Master Data Science for Life Sciences",
 }
 const coolRooms = {
-    10017: "ZP11/D1.07",
-    10018: "ZP11/D1.08",
-    10033: "ZP11/H1.122",
-    10034: "ZP11/H1.86",
-    10508: "ZP11/H1.88A",
+    11367: "ZP11/D1.07",
+    11368: "ZP11/D1.08",
+    11388: "ZP11/H1.122",
+    11398: "ZP11/H1.86",
+    11399: "ZP11/H1.88A",
 };
 
 $(document).ready(async function () {

@@ -98,13 +98,14 @@ function download(content, fileName, contentType) {
 // ========================= MAIN ================================
 // ===============================================================
 const groupList = {
-    BFV1: {year: 1, id: "8446"}, // Year 1
-    BFV2: {year: 2, id: "8445"}, // Year 2
-    BFV3: {year: 3, id: "8451"}, // Year 3
-    BFVB3: {year: 3, id: "7851"}, // Minor Bio-Informatica
-    DSLSR: {year: 1, id: "8286"}, // Master Data Science for Life Sciences
+    BFV1: {year: 1, id: "10763"}, // Year 1
+    BFV2: {year: 2, id: "10762"}, // Year 2
+    BFV3: {year: 3, id: "10768"}, // Year 3
+    BFVB3: {year: 3, id: "10197"}, // Minor Bio-Informatica
+    BFVF3: {year: 3, id: "10143"}, // ???
+    DSLSR: {year: 1, id: "10627"}, // Master Data Science for Life Sciences
 };
-const coolRooms = [10017, 10018, 10033, 10034, 10508];
+const coolRooms = [11367, 11368, 11388, 11398, 11399];
 //                 D1.07, D1.08, H1.122,H1.86, H1.88A
 
 let allItems = [];
@@ -121,5 +122,5 @@ $.each(await getAllDataForGroups(groupList), function (index, item) {
     }
 });
 
-download(JSON.stringify(createResponseObject(allItems)), "all-items.json", "text/plain");
+// download(JSON.stringify(createResponseObject(allItems)), "all-items.json", "text/plain");
 download(JSON.stringify(createResponseObject(onlyCoolRooms)), "only-cool-rooms.json", "text/plain");
